@@ -7,8 +7,8 @@
  * Declaration of error class for the JSON-RPC wrapper.
  */
 
-#ifndef BITCOIN_API_EXCEPTION_H
-#define BITCOIN_API_EXCEPTION_H
+#ifndef SMARTCASH_API_EXCEPTION_H
+#define SMARTCASH_API_EXCEPTION_H
 
 #include <string>
 #include <sstream>
@@ -24,14 +24,14 @@ using Json::Reader;
 using jsonrpc::Errors;
 
 
-class BitcoinException: public std::exception
+class SmartcashException: public std::exception
 {
 private:
 	int code;
 	std::string msg;
 
 public:
-	explicit BitcoinException(int errcode, const std::string& message) {
+	explicit SmartcashException(int errcode, const std::string& message) {
 		
 		/* Connection error */
 		if(errcode == Errors::ERROR_CLIENT_CONNECTOR){
@@ -48,7 +48,7 @@ public:
 		}
 	}
 
-	~BitcoinException() throw() { };
+	~SmartcashException() throw() { };
 
 	int getCode(){
 		return code;

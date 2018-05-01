@@ -3,20 +3,20 @@
 //#define VERBOSE
 
 #include <boost/test/unit_test.hpp>
-#include <bitcoinapi/bitcoinapi.h>
-#include <bitcoinapi/exception.h>
+#include <smartcashapi/smartcashapi.h>
+#include <smartcashapi/exception.h>
 
 #define NO_THROW(METHOD)                    \
   try {                                     \
     (METHOD);                               \
-  } catch (BitcoinException& e) {           \
+  } catch (SmartcashException& e) {           \
     BOOST_REQUIRE_MESSAGE(false, e.what()); \
   }
 
 #define NO_THROW_EXCEPT(METHOD, EXCEPTION)        \
   try {                                           \
     (METHOD);                                     \
-  } catch (BitcoinException& e) {                 \
+  } catch (SmartcashException& e) {                 \
     std::stringstream err;                                        \
     err << "Error (" << e.getCode() << "): " << e.getMessage();   \
     BOOST_REQUIRE_MESSAGE(e.getCode() == (EXCEPTION), err.str()); \
@@ -31,14 +31,14 @@ struct MyFixture {
 	std::string address;
 	int port;
 
-	BitcoinAPI btc;
+	SmartcashAPI smart;
 
      MyFixture()
      : username("Ulysses"),
        password("Random"),
        address("127.0.0.1"),
-       port(8332),
-       btc(username, password, address, port)
+       port(9679),
+       smart(username, password, address, port)
      { }
      ~MyFixture() { }
 };

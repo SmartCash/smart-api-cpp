@@ -1,22 +1,22 @@
 /**
- * @file    bitcoinapi.h
+ * @file    smartcashapi.h
  * @author  Krzysztof Okupski
  * @date    29.10.2014
  * @version 1.0
  *
  * Declaration of a C++ wrapper for communication with
- * a running instance of Bitcoin daemon over JSON-RPC.
+ * a running instance of Smartcash daemon over JSON-RPC.
  */
 
-#ifndef BITCOIN_API_H
-#define BITCOIN_API_H
+#ifndef SMARTCASH_API_H
+#define SMARTCASH_API_H
 
 #include "types.h"
 #include "exception.h"
 
 namespace jsonrpc { class HttpClient; class Client; }
 
-class BitcoinAPI
+class SmartcashAPI
 {
 
 private:
@@ -25,8 +25,8 @@ private:
 
 public:
     /* === Constructor and Destructor === */
-    BitcoinAPI(const std::string& user, const std::string& password, const std::string& host, int port);
-    ~BitcoinAPI();
+    SmartcashAPI(const std::string& user, const std::string& password, const std::string& host, int port);
+    ~SmartcashAPI();
 
     /* === Auxiliary functions === */
     Json::Value sendcommand(const std::string& command, const Json::Value& params);
@@ -50,22 +50,22 @@ public:
     void walletpassphrase(const std::string& passphrase, int timeout);
     void walletpassphrasechange(const std::string& oldpassphrase, const std::string& newpassphrase);
 
-    std::string dumpprivkey(const std::string& bitcoinaddress);
-    void importprivkey(const std::string& bitcoinprivkey);
-    void importprivkey(const std::string& bitcoinprivkey, const std::string& label, bool rescan = true);
+    std::string dumpprivkey(const std::string& smartcashaddress);
+    void importprivkey(const std::string& smartcashprivkey);
+    void importprivkey(const std::string& smartcashprivkey, const std::string& label, bool rescan = true);
 
     std::string addmultisigaddress(int nrequired, const std::vector<std::string>& keys);
     std::string addmultisigaddress(int nrequired, const std::vector<std::string>& keys, const std::string& account);
     multisig_t createmultisig(int nrequired, const std::vector<std::string>& keys);
     std::string getnewaddress(const std::string& account = "");
-    validateaddress_t validateaddress(const std::string& bitcoinaddress);
+    validateaddress_t validateaddress(const std::string& smartcashaddress);
 
     void keypoolrefill();
     bool settxfee(double amount);
     double estimatefee(int blocks);
 
-    std::string signmessage(const std::string& bitcoinaddress, const std::string& message);
-    bool verifymessage(const std::string& bitcoinaddress, const std::string& signature, const std::string& message);
+    std::string signmessage(const std::string& smartcashaddress, const std::string& message);
+    bool verifymessage(const std::string& smartcashaddress, const std::string& signature, const std::string& message);
 
     getinfo_t getinfo();
     void stop();
@@ -77,7 +77,7 @@ public:
     double getunconfirmedbalance();
 
     double getreceivedbyaccount(const std::string& account, int minconf = 1);
-    double getreceivedbyaddress(const std::string& bitcoinaddress, int minconf = 1);
+    double getreceivedbyaddress(const std::string& smartcashaddress, int minconf = 1);
 
     std::vector<accountinfo_t> listreceivedbyaccount(int minconf = 1, bool includeempty = false);
     std::vector<addressinfo_t> listreceivedbyaddress(int minconf = 1, bool includeempty = false);
@@ -86,7 +86,7 @@ public:
     std::vector<transactioninfo_t> listtransactions();
     std::vector<transactioninfo_t> listtransactions(const std::string& account, int count = 10, int from = 0);
 
-    std::string getaccount(const std::string& bitcoinaddress);
+    std::string getaccount(const std::string& smartcashaddress);
     std::string getaccountaddress(const std::string& account);
     std::vector<std::string> getaddressesbyaccount(const std::string& account);
 
@@ -97,13 +97,13 @@ public:
     bool move(const std::string& fromaccount, const std::string& toaccount, double amount,
 			    const std::string& comment, int minconf = 1);
 
-    void setaccount(const std::string& bitcoinaddress, const std::string& account);
+    void setaccount(const std::string& smartcashaddress, const std::string& account);
 
-    std::string sendtoaddress(const std::string& bitcoinaddress, double amount);
-    std::string sendtoaddress(const std::string& bitcoinaddress, double amount, const std::string& comment, const std::string& comment_to);
+    std::string sendtoaddress(const std::string& smartcashaddress, double amount);
+    std::string sendtoaddress(const std::string& smartcashaddress, double amount, const std::string& comment, const std::string& comment_to);
 
-    std::string sendfrom(const std::string& fromaccount, const std::string& tobitcoinaddress, double amount);
-    std::string sendfrom(const std::string& fromaccount, const std::string& tobitcoinaddress, double amount, const std::string& comment, const std::string& comment_to, int minconf = 1);
+    std::string sendfrom(const std::string& fromaccount, const std::string& tosmartcashaddress, double amount);
+    std::string sendfrom(const std::string& fromaccount, const std::string& tosmartcashaddress, double amount, const std::string& comment, const std::string& comment_to, int minconf = 1);
 
     std::string sendmany(const std::string& fromaccount, const std::map<std::string, double>& amounts);
     std::string sendmany(const std::string& fromaccount, const std::map<std::string, double>& amounts, const std::string comment, int minconf = 1);
