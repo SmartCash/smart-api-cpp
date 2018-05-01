@@ -6,7 +6,7 @@ This is a C++ wrapper library for JSON-RPC communication with the Smartcash daem
 Building the library
 --------------------
 
-[![Build Status](https://travis-ci.org/minium/smartcash-api-cpp.svg?branch=master)](https://travis-ci.org/minium/smartcash-api-cpp)
+[![Build Status](https://travis-ci.org/leoreinaux/smartcash-api-cpp.svg?branch=master)](https://travis-ci.org/minium/smartcash-api-cpp)
 
 **Dependencies**
 
@@ -50,10 +50,10 @@ int main()
     try
     {
         /* Constructor to connect to the smartcash daemon */
-        SmartcashAPI btc(username, password, address, port);
+        SmartcashAPI smart(username, password, address, port);
 
         /* Example method - getbalance */
-        std::cout << "Wallet balance: " << btc.getbalance() << std::endl;
+        std::cout << "Wallet balance: " << smart.getbalance() << std::endl;
     }
     catch(SmartcashException e)
     {
