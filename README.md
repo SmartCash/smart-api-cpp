@@ -6,7 +6,7 @@ This is a C++ wrapper library for JSON-RPC communication with the Smartcash daem
 Building the library
 --------------------
 
-[![Build Status](https://travis-ci.org/leoreinaux/smartcash-api-cpp.svg?branch=master)](https://travis-ci.org/leoreinaux/smartcash-api-cpp)
+[![Build Status](https://travis-ci.org/leoreinaux/smart-api-cpp.svg?branch=master)](https://travis-ci.org/leoreinaux/smart-api-cpp)
 
 **Dependencies**
 
